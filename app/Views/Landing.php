@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
+    <title>Home</title>
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" />
 
     <style>
@@ -113,15 +112,15 @@
                     <p class="mb-3 scene">Click below to get a copy of our latest case study of how FiveBelow utilizing Greenfly has been a gamechanger. And this only the beginning.</p>
                     <div>
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Sign in</button>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Check out Available Drug</button>
+                        <a class="btn btn-primary" href="<?php echo base_url(); ?>Home/customer">Check out Available Drug</a>
                     </div>
             </div>
         </div>
         <div class="half graphic col-lg-6 d-flex justify-content-center">
-            <img data-tilt data-tilt-perspective="300" data-tilt-speed="800" data-tilt-max="5" class="screens" src="<?php echo base_url(); ?>assets/image/Download_Medical_caduceus_symbol_design_illustration_vector_eps.png" alt="" />
+            <img data-tilt data-tilt-perspective="300" data-tilt-speed="800" data-tilt-max="5" class="screens" src="<?php echo base_url(); ?>assets/image/pharmacy_international_logo.png" alt="" />
         </div>
     </section>
-    
+
 </body>
 
 </html>
