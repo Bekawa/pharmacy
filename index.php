@@ -1,67 +1,139 @@
-<?php
+<?php require_once "./lib/controllerUserData.php"; ?>
+<!DOCTYPE html>
+<html lang="en">
 
-// Check PHP version.
-$minPhpVersion = '7.4'; // If you update this, don't forget to update `spark`.
-if (version_compare(PHP_VERSION, $minPhpVersion, '<')) {
-    $message = sprintf(
-        'Your PHP version must be %s or higher to run CodeIgniter. Current version: %s',
-        $minPhpVersion,
-        PHP_VERSION
-    );
+<head>
+    <meta charset="UTF-8">
+    <title>Login Form</title>
+    <link rel="stylesheet" href="./assets/plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
 
-    exit($message);
-}
+        html,
+        body {
+            --bs-secondary-bg: #e9ecef;
 
-// Path to the front controller (this file)
-define('FCPATH', __DIR__ . DIRECTORY_SEPARATOR);
+            --bs-light-text: #6c757d;
 
-// Ensure the current directory is pointing to the front controller's directory
-chdir(FCPATH);
+            background: linear-gradient(90deg, var(--bs-secondary-bg) 31px, transparent 1px) 50%, linear-gradient(180deg, var(--bs-secondary-bg) 31px, var(--bs-light-text) 1px) 50%;
+            background-size: 32px 32px;
+            font-family: 'Poppins', sans-serif;
+        }
 
-/*
- *---------------------------------------------------------------
- * BOOTSTRAP THE APPLICATION
- *---------------------------------------------------------------
- * This process sets up the path constants, loads and registers
- * our autoloader, along with Composer's, loads our constants
- * and fires up an environment-specific bootstrapping.
- */
+        ::selection {
+            color: #fff;
+            background: #6665ee;
+        }
 
-// Load our paths config file
-// This is the line that might need to be changed, depending on your folder structure.
-require FCPATH . 'app/Config/Paths.php';
-// ^^^ Change this line if you move your application folder
+        .container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
 
-$paths = new Config\Paths();
+        .container .form {
+            background: #fff;
+            padding: 30px 35px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
 
-// Location of the framework bootstrap file.
-require rtrim($paths->systemDirectory, '\\/ ') . DIRECTORY_SEPARATOR . 'bootstrap.php';
+        .container .form form .form-control {
+            height: 40px;
+            font-size: 15px;
+        }
 
-// Load environment settings from .env files into $_SERVER and $_ENV
-require_once SYSTEMPATH . 'Config/DotEnv.php';
-(new CodeIgniter\Config\DotEnv(ROOTPATH))->load();
+        .container .form form .forget-pass {
+            margin: -15px 0 15px 0;
+        }
 
-/*
- * ---------------------------------------------------------------
- * GRAB OUR CODEIGNITER INSTANCE
- * ---------------------------------------------------------------
- *
- * The CodeIgniter class contains the core functionality to make
- * the application run, and does all of the dirty work to get
- * the pieces all working together.
- */
+        .container .form form .forget-pass a {
+            font-size: 15px;
+        }
 
-$app = Config\Services::codeigniter();
-$app->initialize();
-$context = is_cli() ? 'php-cli' : 'web';
-$app->setContext($context);
+        .container .form form .button {
+            background: #6665ee;
+            color: #fff;
+            font-size: 17px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
 
-/*
- *---------------------------------------------------------------
- * LAUNCH THE APPLICATION
- *---------------------------------------------------------------
- * Now that everything is setup, it's time to actually fire
- * up the engines and make this app do its thang.
- */
+        .container .form form .button:hover {
+            background: #5757d1;
+        }
 
-$app->run();
+        .container .form form .link {
+            padding: 5px 0;
+        }
+
+        .container .form form .link a {
+            color: #6665ee;
+        }
+
+        .container .login-form form p {
+            font-size: 14px;
+        }
+
+        .container .row .alert {
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 offset-md-4 form login-form">
+                <form action="login-user.php" method="POST" autocomplete="">
+                    <h3 class="text-center"><b>Login Form</b></h3>
+                    <p class="text-center">Login with your email and password.</p>
+                    <?php
+                    if (count($errors) > 0) {
+                    ?>
+                        <div class="alert alert-danger text-center">
+                            <?php
+                            foreach ($errors as $showerror) {
+                                echo $showerror;
+                            }
+                            ?>
+                        </div>
+                    <?php
+                    }
+                    ?>
+                    <div class="form-group">
+                        <label><span class="login-danger">*</span>Email</label>
+                        <input class="form-control" type="email" name="email" placeholder="Email Address" required value="<?php echo $email ?>">
+                    </div>
+                    <div class="form-group">
+                        <label><span class="login-danger">*</span>Password </label>
+                        <input class="form-control " type="password" name="password" placeholder="Password" required>
+                    </div>
+                    <div class="form-group">
+                        <label><span class="login-danger">*</span>User Role </label>
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>Adminstrator</option>
+                            <option value="1">Doctor</option>
+                            <option value="2">Pharmacist</option>
+                            <option value="3">Cashier</option>
+                            <option value="3">Store_coordinator</option>
+
+                        </select>
+                    </div>
+
+
+                    <div class="link forget-pass text-left"><a href="forgot-password.php">Forgot password?</a></div>
+                    <div class="form-group">
+                        <input class="form-control button" type="submit" name="login" value="Login">
+                    </div>
+                    <div class="link login-link text-center">Not yet a member? <a href="index.php">Signup now</a></div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
