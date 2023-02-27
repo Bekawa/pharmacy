@@ -18090,7 +18090,7 @@ body.offcanvas-active {
 }
 
 .content-inner {
-  padding: -webkit-calc(var(--bs-gutter-x, 0.75rem) * 3);
+padding: -webkit-calc(var(--bs-gutter-x, 0.75rem) * 2);
   padding: calc(var(--bs-gutter-x, 0.75rem) * 3);
 }
 

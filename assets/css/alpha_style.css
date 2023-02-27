@@ -263,7 +263,7 @@ body {
 .main-container {
   display: flex;
   flex-grow: 1;
-  padding-top: 30px;
+  padding-top: 10px;
 }
 
 .search-type {
@@ -425,7 +425,7 @@ body {
 .pharma-cards {
   padding-top: 20px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-column-gap: 15px;
   grid-row-gap: 15px;
   -webkit-animation: slideY 0.6s both;

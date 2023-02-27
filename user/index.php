@@ -26,7 +26,7 @@ if($email != false && $password != false){
   <head>
     <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <title>Hope UI | Responsive Bootstrap 5 Admin Dashboard Template</title>
+      <title>Guest</title>
       
       <!-- Favicon -->
       <link rel="shortcut icon" href="../assets/images/favicon.ico" />
@@ -74,24 +74,7 @@ if($email != false && $password != false){
       <span class="screen-darken"></span>
 
 
-
-
-
-
-
-
       <main class="main-content">
-
-
-
-
-
-
-
-
-
-
-
         <!--Nav Start-->
         <nav class="nav-body navbar navbar-expand-lg navbar-light iq-navbar"  style="color:#8A92A6">
           <div class="container-fluid navbar-inner">
@@ -112,8 +95,6 @@ if($email != false && $password != false){
                <ul class="navbar-nav">
  <!-- search bar ሚገባበት -->        
                   <li class="nav-item">
-
-
                   <div class="input-group search-center">
               <input type="search" placeholder="What're you searching for?" aria-describedby="button-addon1" class="form-control border-0 bg-light">
               <div class="input-group-append">
@@ -121,8 +102,6 @@ if($email != false && $password != false){
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="#ffffff" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><circle cx="116" cy="116" r="84" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></circle><line x1="175.4" y1="175.4" x2="224" y2="224" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line></svg>                </button>
               </div>
             </div>
-
-
                   </li>
                </ul>
             </div> <!-- container-fluid.// -->
@@ -154,77 +133,20 @@ if($email != false && $password != false){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         <div class="conatiner content-inner pb-0 ">
 <div class="row">
    <div class="col-md-12 col-lg-12">
       <div class="row row-cols-1">
-        
-
-
-
-
-
-
-
-      <div class="wrapper ">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <div class="main-container">
-
-
  <div class="search-type">
   <div class="alert">
-   <div class="alert-title">Create pharma Alert</div>
-   <div class="alert-subtitle">Create a pharma alert now and never miss a job</div>
-   <input type="text" placeholder="Enter pharma keyword">
-   <button class="search-buttons">Create pharma Alerts</button>
+   <div class="alert-title">Create Drug Request</div>
+   <div class="alert-subtitle">Create a drug request if you don't find the drug you want and check later</div>
+   <input type="text" placeholder="Enter Drug name">
+   <button class="search-buttons">send Request</button>
   </div>
   <div class="pharma-time">
-   <div class="pharma-time-title">Type of Employment</div>
+   <div class="pharma-time-title">Type of Drug</div>
    <div class="pharma-wrapper">
     <div class="type-container">
      <input type="checkbox" id="pharma1" class="pharma-style" checked>
@@ -654,7 +576,6 @@ if($email != false && $password != false){
 </div>
 
 
-</div>
 
 
 
