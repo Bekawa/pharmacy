@@ -1,139 +1,54 @@
-<?php require_once "./lib/controllerUserData.php"; ?>
+<?php require_once "./validation/controllerUserData.php" ?>
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <title>Login Form</title>
-    <link rel="stylesheet" href="./assets/plugins/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="./assets/css/style.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
-
-        html,
-        body {
-            --bs-secondary-bg: #e9ecef;
-
-            --bs-light-text: #6c757d;
-
-            background: linear-gradient(90deg, var(--bs-secondary-bg) 31px, transparent 1px) 50%, linear-gradient(180deg, var(--bs-secondary-bg) 31px, var(--bs-light-text) 1px) 50%;
-            background-size: 32px 32px;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        ::selection {
-            color: #fff;
-            background: #6665ee;
-        }
-
-        .container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        .container .form {
-            background: #fff;
-            padding: 30px 35px;
-            border-radius: 5px;
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        }
-
-        .container .form form .form-control {
-            height: 40px;
-            font-size: 15px;
-        }
-
-        .container .form form .forget-pass {
-            margin: -15px 0 15px 0;
-        }
-
-        .container .form form .forget-pass a {
-            font-size: 15px;
-        }
-
-        .container .form form .button {
-            background: #6665ee;
-            color: #fff;
-            font-size: 17px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-
-        .container .form form .button:hover {
-            background: #5757d1;
-        }
-
-        .container .form form .link {
-            padding: 5px 0;
-        }
-
-        .container .form form .link a {
-            color: #6665ee;
-        }
-
-        .container .login-form form p {
-            font-size: 14px;
-        }
-
-        .container .row .alert {
-            font-size: 14px;
-        }
-    </style>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./assets/css/log-style.css">
+	<title>Login</title>
 </head>
-
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 offset-md-4 form login-form">
-                <form action="login-user.php" method="POST" autocomplete="">
-                    <h3 class="text-center"><b>Login Form</b></h3>
-                    <p class="text-center">Login with your email and password.</p>
-                    <?php
-                    if (count($errors) > 0) {
-                    ?>
+
+	<div class="form-wrapper">
+		<h2 class="form-title">Login</h2>
+		<p class="form-detail">signin with your email and password.</p>
+		
+		<form action="index.php" method="POST" autocomplete="">
+
+		<?php
+                    if(count($errors) > 0){
+                        ?>
                         <div class="alert alert-danger text-center">
                             <?php
-                            foreach ($errors as $showerror) {
+                            foreach($errors as $showerror){
                                 echo $showerror;
                             }
                             ?>
                         </div>
-                    <?php
+                        <?php
                     }
                     ?>
-                    <div class="form-group">
-                        <label><span class="login-danger">*</span>Email</label>
-                        <input class="form-control" type="email" name="email" placeholder="Email Address" required value="<?php echo $email ?>">
-                    </div>
-                    <div class="form-group">
-                        <label><span class="login-danger">*</span>Password </label>
-                        <input class="form-control " type="password" name="password" placeholder="Password" required>
-                    </div>
-                    <div class="form-group">
-                        <label><span class="login-danger">*</span>User Role </label>
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Adminstrator</option>
-                            <option value="1">Doctor</option>
-                            <option value="2">Pharmacist</option>
-                            <option value="3">Cashier</option>
-                            <option value="3">Store_coordinator</option>
-
-                        </select>
-                    </div>
 
 
-                    <div class="link forget-pass text-left"><a href="forgot-password.php">Forgot password?</a></div>
-                    <div class="form-group">
-                        <input class="form-control button" type="submit" name="login" value="Login">
-                    </div>
-                    <div class="link login-link text-center">Not yet a member? <a href="index.php">Signup now</a></div>
-                </form>
-            </div>
-        </div>
-    </div>
+
+
+			<div class="form-group">
+				<label for="email">Email Address</label>
+				<input type="email" name="email" placeholder="email address" required value="<?php echo $email ?>">
+			</div>
+			<div class="form-group">
+				<label for="password">Password</label>
+				<input type="password" name="password" placeholder="Your password" required>
+			</div>
+			<div class="mb-4">
+				<a href="./validation/forgot-password.php" class="form-link">Forgot password?</a>
+			</div>
+			<button type="submit" class="btn btn-blue mb-4" name="login" value="Login">Login</button>
+			<p>Don't have an account? <a href="./validation/register.php" class="form-link">Create account</a></p>
+		</form>
+	</div>
+	
 
 </body>
-
 </html>
