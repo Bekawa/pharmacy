@@ -30,7 +30,7 @@ if(isset($_POST['signup'])){
         $errors['email'] = "Email that you have entered is already exist!";
     }
     if(count($errors) === 0){
-        $encpass = password_hash($password, PASSWORD_BCRYPT);
+        $encpass = md5($password);
         $code = rand(999999, 111111);
         $status = "notverified";
         $insert_data = "INSERT INTO usertable (name, email, password, code, status)
@@ -116,27 +116,81 @@ if(isset($_POST['signup'])){
     if(isset($_POST['login'])){
         $email = mysqli_real_escape_string($con, $_POST['email']);
         $password = mysqli_real_escape_string($con, $_POST['password']);
+        $user_type = mysqli_real_escape_string($con, $_POST['user_type']);
+  
         $check_email = "SELECT * FROM usertable WHERE email = '$email'";
         $res = mysqli_query($con, $check_email);
         if(mysqli_num_rows($res) > 0){
             $fetch = mysqli_fetch_assoc($res);
             $fetch_pass = $fetch['password'];
-            if(password_verify($password, $fetch_pass)){
+            $encpass = md5($password);
+            if($encpass == $fetch_pass){
                 $_SESSION['email'] = $email;
                 $status = $fetch['status'];
-                if($status == 'verified' && $fetch['user_type'] == 'admin'){
-                    $_SESSION['admin_name'] = $fetch['name'];
-                    $_SESSION['email'] = $email;
-                    $_SESSION['password'] = $password;
-                      header('location: home.php');
-                   
-                 }elseif($status == 'verified' &&  $fetch['user_type'] == 'user'){
+                if($status == 'verified')
+                {
+                    $verify_user = $fetch['user_type'];
+
+                    if($user_type == "Adminstrator" && $verify_user == $user_type)
+                    {
                     $_SESSION['name'] = $fetch['name'];
                     $_SESSION['email'] = $email;
                     $_SESSION['password'] = $password;
-                    header('location:user/index.php');
-                 } 
-                 
+                      header('location: ./pharma.Adminstrator/index.php');
+                    }
+                    
+                    elseif ($user_type == "Doctor" && $verify_user == $user_type)
+                    {
+                    $_SESSION['name'] = $fetch['name'];
+                    $_SESSION['email'] = $email;
+                    $_SESSION['password'] = $password;
+                      header('location: ./pharma.doctor/index.php');
+                    }
+
+                    elseif ($user_type == "Manager" && $verify_user == $user_type)
+                    {
+                    $_SESSION['name'] = $fetch['name'];
+                    $_SESSION['email'] = $email;
+                    $_SESSION['password'] = $password;
+                      header('location: ./pharma.Manager/index.php');
+                    }
+
+                    elseif ($user_type == "Pharmacist" && $verify_user == $user_type)
+                    {
+                    $_SESSION['name'] = $fetch['name'];
+                    $_SESSION['email'] = $email;
+                    $_SESSION['password'] = $password;
+                      header('location: ./pharma.Pharmacist/index.php');
+                    }
+
+                    elseif ($user_type == "Store_coordinator" && $verify_user == $user_type)
+                    {
+                    $_SESSION['name'] = $fetch['name'];
+                    $_SESSION['email'] = $email;
+                    $_SESSION['password'] = $password;
+                      header('location: ./pharma.Store_coordinator/index.php');
+                    }
+
+                    elseif ($user_type == "Cashier" && $verify_user == $user_type)
+                    {
+                    $_SESSION['name'] = $fetch['name'];
+                    $_SESSION['email'] = $email;
+                    $_SESSION['password'] = $password;
+                      header('location: ./pharma.Cashier/index.php');
+                    }
+
+                    elseif ($user_type == "Guest" && $verify_user == $user_type)
+                    {
+                    $_SESSION['name'] = $fetch['name'];
+                    $_SESSION['email'] = $email;
+                    $_SESSION['password'] = $password;
+                      header('location: ./pharma.guest/index.php');
+                    }
+
+                    else{
+                        $errors['email'] = "Warning!! you select unAuthorized previllage";
+                    }
+                }                                  
                 else{
                     $info = "It's look like you haven't still verify your email - $email";
                     $_SESSION['info'] = $info;
@@ -209,7 +263,7 @@ if(isset($_POST['signup'])){
         }else{
             $code = 0;
             $email = $_SESSION['email']; //getting this email using session
-            $encpass = password_hash($password, PASSWORD_BCRYPT);
+            $encpass = md5($password);
             $update_pass = "UPDATE usertable SET code = $code, password = '$encpass' WHERE email = '$email'";
             $run_query = mysqli_query($con, $update_pass);
             if($run_query){

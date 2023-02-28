@@ -63,7 +63,7 @@ if($email != false && $password != false){
 
 
   </head>
-  <body class="   boxed" style="scale: 0.98;">
+  <body class="   boxed" style="zoom: 0.9;">
     <div class="boxed-inner">
       <!-- loader Start -->
       <div id="loading">
